@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+	<!-- Appenders: publican la información a loggear en destinos preferidos -->
+	<!-- Loggers: capturan la información que se desea loggear -->
+	<!-- Layouts: formatean la información de loggeo según estilos -->
+	
+	<Appenders>
+		<Console name="STOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+		</Console>
+		<File name="FILELOG" fileName="taller-java-una.log">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+		</File>
+		<File name="ASYNFILELOG" fileName="taller-java-una-asyn.log">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+		</File>
+		<Async name="ASYNC">
+			<AppenderRef ref="ASYNFILELOG" />
+		</Async>
+		<RollingFile name="FILEROLLING" fileName="taller-java-una-roll.log"
+			filePattern="${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.GZ">
+			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
+			<Policies>
+				<TimeBasedTriggringPolicy interval="6" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="200 MB"/>
+			</Policies>
+		</RollingFile>
+
+	</Appenders>
+	
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="STOUT" />
+			<AppenderRef ref="FILELOG" />
+			<AppenderRef ref="ASYNC" />
+			<AppenderRef ref="FILEROLLING" />		
+		</Root>
+	</Loggers>
+	
+</Configuration>
