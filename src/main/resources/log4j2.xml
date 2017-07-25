@@ -18,23 +18,23 @@
 		<Async name="ASYNC">
 			<AppenderRef ref="ASYNFILELOG" />
 		</Async>
-		<RollingFile name="FILEROLLING" fileName="taller-java-una-roll.log"
+		<!--  RollingFile name="FILEROLLING" fileName="taller-java-una-roll.log"
 			filePattern="${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.GZ">
 			<PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %msg%n" />
 			<Policies>
 				<TimeBasedTriggringPolicy interval="6" modulate="true"/>
 				<SizeBasedTriggeringPolicy size="200 MB"/>
 			</Policies>
-		</RollingFile>
+		</RollingFile-->
 
 	</Appenders>
 	
 	<Loggers>
-		<Root level="debug">
+		<Root level="info">
 			<AppenderRef ref="STOUT" />
 			<AppenderRef ref="FILELOG" />
 			<AppenderRef ref="ASYNC" />
-			<AppenderRef ref="FILEROLLING" />		
+			<!-- AppenderRef ref="FILEROLLING" -->		
 		</Root>
 	</Loggers>
 	
